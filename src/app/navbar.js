@@ -9,7 +9,7 @@ let allProducts = [];
 
 
 export function createNavbar() {
-    let logo = '../../img/RSLogo.png';
+    let logo = './img/RSLogo.png';
 
     let navBar = `<nav class="navbar navbar-expand py-3 px-3">
 			<div class="container">
@@ -66,7 +66,7 @@ function displayProducts(products) {
 
 		cardContainer.innerHTML = '';
 		console.log(products)
-    getProducts().then((products) => {
+   
         products.map((product, index) => {
             let card = `
              <div class="col-12 col-sm-6 col-md-4 col-lg-3">
@@ -90,7 +90,7 @@ function displayProducts(products) {
             // Crea y añade el modal en el DOM
             createModal(product, index);
         });
-    });
+   
 }
 
 
