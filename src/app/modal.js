@@ -1,8 +1,8 @@
 import { createCart } from "./cart.js";
 import { showMsg } from "./toast.js";
 
-export function createModal(product, index) {
-    const modalId = `modal-${index}`;
+export function createModal(product) {
+    const modalId = `modal-${product.id}`;
     let modal = `
    <!-- Modal -->
 <div class="modal fade" id="${modalId}" tabindex="-1" aria-labelledby="${modalId}Label" aria-hidden="true">
@@ -15,7 +15,7 @@ export function createModal(product, index) {
             </div>
             <div class="modal-body text-center">
                 <img src="${product.image}" class="img-fluid" alt="${product.title}" style="max-height: 300px; object-fit: contain;">
-                <p class="card-text mt-3">$${product.price}</p>
+                <p class="card-text mt-3">$${(product.price).toFixed(2)}</p>
                 <p class="card-text">${product.description}</p>
             </div>
             <div class="modal-footer">

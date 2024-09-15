@@ -20,13 +20,19 @@ export function createNavbar() {
 					<form class="col" role="search">
 						<input id="searchBar" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 					</form>
-					<div class="col-auto">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart"
-							viewBox="0 0 16 16">
-							<path
-								d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-						</svg>
+                    <div class="col-auto position-relative">
+						<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart"
+								viewBox="0 0 16 16">
+								<path
+									d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+							</svg>
+							<span id="cart-notification" class="badge bg-danger position-absolute top-0 start-100 translate-middle p-2 rounded-circle">
+								0
+							</span>
+						</a>
 					</div>
+
 				</div>
 			</div>
 		</nav>`;
@@ -67,7 +73,7 @@ function displayProducts(products) {
 		cardContainer.innerHTML = '';
 		console.log(products)
    
-        products.map((product, index) => {
+        products.map((product) => {
             let card = `
              <div class="col-12 col-sm-6 col-md-4 col-lg-3">
         <div class="card h-100 border p-3 shadow">
@@ -78,7 +84,7 @@ function displayProducts(products) {
                 <h5 class="card-title text-truncate" style="max-height: 3em;">${product.title}</h5>
                 <p class="card-text">$${(product.price).toFixed(2)}</p>
                 <!-- Botón para ver más detalles (modal) -->
-                <a href="#modal-${index}" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#modal-${index}">Ver más detalles</a>
+                <a href="#modal-${product.id}" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#modal-${product.id}">Ver más detalles</a>
             </div>
         </div>
     </div>
@@ -88,7 +94,7 @@ function displayProducts(products) {
             cardContainer.insertAdjacentHTML('beforeend', card);
 
             // Crea y añade el modal en el DOM
-            createModal(product, index);
+            createModal(product);
         });
    
 }
